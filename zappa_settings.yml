@@ -1,0 +1,10 @@
+dev:
+    s3_bucket: reader-app-bucket
+    app_function: reader.app
+    keep_warm: false
+    extra_permissions:
+        -
+            Effect: Allow
+            Action:
+                - "polly:SynthesizeSpeech"
+            Resource: "*"
