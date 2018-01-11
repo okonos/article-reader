@@ -1,41 +1,61 @@
 <!doctype html>
-<!--<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">-->
-<h1>The Reader</h1>
+<html lang="en" style="height: 100%">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-{% if error %}<p><strong>Error:</strong> {{ error }}{% endif %}
-<form action="{{ url_for('index') }}" method=post>
-	<dl>
-		<dt>URL:
-		<dd><input type=url name=url>
-		<dt>Voice:
-		<dd><select name="voiceSelect">
-			<option disabled>Australian</option>
-			<option value="Nicole" selected>Nicole (Female)</option>
-			<option value="Russell">Russell (Male)</option>
-			<option disabled>British</option>
-			<option value="Amy">Amy (Female)</option>
-			<option value="Brian">Brian (Male)</option>
-			<option value="Emma">Emma (Female)</option>
-			<option disabled>Indian</option>
-			<option value="Aditi">Aditi (Female)</option>
-			<option value="Raveena">Raveena (Female)</option>
-			<option disabled>US</option>
-			<option value="Ivy">Ivy (Female)</option>
-			<option value="Joanna">Joanna (Female)</option>
-			<option value="Joey">Joey (Male)</option>
-			<option value="Justin">Justin (Male)</option>
-			<option value="Kendra">Kendra (Female)</option>
-			<option value="Kimberly">Kimberly (Female)</option>
-			<option value="Matthew">Matthew (Male)</option>
-			<option value="Salli">Salli (Female)</option>
-		</select>
-		<dd><input type=submit value=Read>
-	</dl>
-</form>
+		<!--<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 
-<!--
-<audio controls="controls" autoplay>
-<source
-src="https://s3.eu-central-1.amazonaws.com/reader-app-bucket/40f6057c08e7c8a680ac4bbdbe41df2f.mp3" type="audio/mpeg">
-</audio>
--->
+		<title>The Reader</title>
+	</head>
+	<body style="height: 100%">
+		<div class="container h-100" style="margin-top: 100px">
+			<div class="row justify-content-center">
+				<div class="col-sm-6">
+					<h1 class="text-center">The Reader</h1>
+
+					{% if error %}
+					<div class="alert alert-danger" role="alert">
+						Error: {{ error }}
+					</div>
+					{% endif %}
+
+					<form action="{{ url_for('index') }}" method=post>
+						<div class="form-group">
+							<label for="urlInput">URL</label>
+							<input type="url" class="form-control" name="url"
+											  id="urlInput">
+						</div>
+						<div class="form-group">
+							<label for="voiceSelect">Voice</label>
+							<select class="form-control" name="voiceSelect"
+									id="voiceSelect">
+								<option disabled>Australian</option>
+								<option value="Nicole" selected>Nicole (Female)</option>
+								<option value="Russell">Russell (Male)</option>
+								<option disabled>British</option>
+								<option value="Amy">Amy (Female)</option>
+								<option value="Brian">Brian (Male)</option>
+								<option value="Emma">Emma (Female)</option>
+								<option disabled>Indian</option>
+								<option value="Aditi">Aditi (Female)</option>
+								<option value="Raveena">Raveena (Female)</option>
+								<option disabled>US</option>
+								<option value="Ivy">Ivy (Female)</option>
+								<option value="Joanna">Joanna (Female)</option>
+								<option value="Joey">Joey (Male)</option>
+								<option value="Justin">Justin (Male)</option>
+								<option value="Kendra">Kendra (Female)</option>
+								<option value="Kimberly">Kimberly (Female)</option>
+								<option value="Matthew">Matthew (Male)</option>
+								<option value="Salli">Salli (Female)</option>
+							</select>
+						</div>
+						<button type="submit" class="btn btn-primary">Read</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
