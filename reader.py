@@ -43,7 +43,8 @@ def index():
             )
             speech += response['AudioStream'].read()
 
-        filename = hashlib.md5(url.encode('utf-8')).hexdigest() + '.mp3'
+        hashInput = url + voice
+        filename = hashlib.md5(hashInput.encode('utf-8')).hexdigest() + '.mp3'
         s3.put_object(Bucket=BUCKET_NAME, Key=filename,
                       Body=speech,
                       ContentType='audio/mpeg',
