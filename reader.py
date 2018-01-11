@@ -19,32 +19,33 @@ polly = boto3.client('polly')
 def index():
     if request.method == 'POST':
         voice = request.form['voiceSelect']
-        # text = request.form['text']
         url = request.form['url']
         a = Article(url)
         a.download()
         a.parse()
         text = a.text
-        # TODO ssml
-        # text = a.text.replace('\n\n',
+        # TODO error handling
+        # if not text...
 
         speech = b''
         chunkSize = 1200
         while text:
             i = text[chunkSize:].find('.') + 1
             chunk = text[:chunkSize+i]
+            chunk = '<speak><p>' + chunk.replace('\n\n', '</p><p>') + \
+                '</p></speak>'
             text = text[chunkSize+i:].strip()
             response = polly.synthesize_speech(
                 OutputFormat='mp3',
                 Text=chunk,
-                TextType='text',  # 'ssml',
+                TextType='ssml',
                 VoiceId=voice
             )
             speech += response['AudioStream'].read()
 
         filename = hashlib.md5(url.encode('utf-8')).hexdigest() + '.mp3'
         s3.put_object(Bucket=BUCKET_NAME, Key=filename,
-                      Body=speech,  # response['AudioStream'].read(),
+                      Body=speech,
                       ContentType='audio/mpeg',
                       ACL='public-read')
         return redirect(BUCKET_URL + filename)
