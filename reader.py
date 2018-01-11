@@ -23,10 +23,11 @@ def index():
         a = Article(url)
         a.download()
         a.parse()
-        text = a.text
-        # TODO error handling
-        # if not text...
+        if not a.text:
+            error = "Article could not be parsed"
+            return render_template('index.html', error=error)
 
+        text = a.text
         speech = b''
         chunkSize = 1200
         while text:
