@@ -16,8 +16,7 @@ python_version = "3.6"
 
 [packages]
 
-flask = "*"
+Flask = "*"
 zappa = "*"
-"flask-s3" = "*"
 "boto3" = "*"
 "newspaper3k" = "*"

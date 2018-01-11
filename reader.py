@@ -1,14 +1,11 @@
 import boto3
 import hashlib
 from flask import Flask, render_template, request, redirect
-from flask_s3 import FlaskS3
-from newspaper import Article
+from newspaper import Article, ArticleException
 
 
 app = Flask(__name__)
 BUCKET_NAME = 'reader-app-bucket'
-app.config['FLASKS3_BUCKET_NAME'] = BUCKET_NAME
-f_s3 = FlaskS3(app)
 s3 = boto3.client('s3')
 REGION = s3.get_bucket_location(Bucket=BUCKET_NAME)['LocationConstraint']
 BUCKET_URL = 'https://s3.' + REGION + '.amazonaws.com/' + BUCKET_NAME + '/'
@@ -20,9 +17,13 @@ def index():
     if request.method == 'POST':
         voice = request.form['voiceSelect']
         url = request.form['url']
-        a = Article(url)
-        a.download()
-        a.parse()
+        try:
+            a = Article(url)
+            a.download()
+            a.parse()
+        except ArticleException:
+            pass  # handled underneath
+
         if not a.text:
             error = "Article could not be parsed"
             return render_template('index.html', error=error)
