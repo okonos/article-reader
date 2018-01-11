@@ -4,9 +4,31 @@
 
 <form action="{{ url_for('index') }}" method=post>
 	<dl>
-		<dt>Text:
-		<dd><input type=text name=text>
-		<dd><input type=submit value=Convert>
+		<dt>URL:
+		<dd><input type=url name=url>
+		<dt>Voice:
+		<dd><select name="voiceSelect">
+			<option disabled>Australian</option>
+			<option value="Nicole" selected>Nicole (Female)</option>
+			<option value="Russell">Russell (Male)</option>
+			<option disabled>British</option>
+			<option value="Amy">Amy (Female)</option>
+			<option value="Brian">Brian (Male)</option>
+			<option value="Emma">Emma (Female)</option>
+			<option disabled>Indian</option>
+			<option value="Aditi">Aditi (Female)</option>
+			<option value="Raveena">Raveena (Female)</option>
+			<option disabled>US</option>
+			<option value="Ivy">Ivy (Female)</option>
+			<option value="Joanna">Joanna (Female)</option>
+			<option value="Joey">Joey (Male)</option>
+			<option value="Justin">Justin (Male)</option>
+			<option value="Kendra">Kendra (Female)</option>
+			<option value="Kimberly">Kimberly (Female)</option>
+			<option value="Matthew">Matthew (Male)</option>
+			<option value="Salli">Salli (Female)</option>
+		</select>
+		<dd><input type=submit value=Read>
 	</dl>
 </form>
 
