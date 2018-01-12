@@ -1,5 +1,5 @@
 dev:
-    s3_bucket: reader-app-bucket
+    s3_bucket: YOUR_BUCKET_NAME_HERE
     app_function: reader.app
     keep_warm: false
     extra_permissions:

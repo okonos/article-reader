@@ -5,7 +5,7 @@ from newspaper import Article, ArticleException
 
 
 app = Flask(__name__)
-BUCKET_NAME = 'reader-app-bucket'
+BUCKET_NAME = 'YOUR_BUCKET_NAME_HERE'
 s3 = boto3.client('s3')
 REGION = s3.get_bucket_location(Bucket=BUCKET_NAME)['LocationConstraint']
 BUCKET_URL = 'https://s3.' + REGION + '.amazonaws.com/' + BUCKET_NAME + '/'
